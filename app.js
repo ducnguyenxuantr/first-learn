@@ -1,13 +1,19 @@
 
 const urlcourses = 'http://localhost:3000/courses';
 const urlimg = 'http://localhost:3000/img';
+const urlpassword = 'http://localhost:3000/Password';
 const formElement = document.querySelector('#add');
 const btnElement = document.querySelector('#btn')
 const inputnameElement = document.querySelector('#name')
 const inputdesElement = document.querySelector('#description')
+const deleteElement = document.querySelector('#delete')
+const inputpasswordElement = document.querySelector('#password')
+const checkElement = document.querySelector('#check')
+
 
 function start() {
     getCourses(rederCourses);
+    getPassword(checkpassword);
     createForm();
 }
 
@@ -47,7 +53,7 @@ function postCourses(data, callback) {
         .then(response => {
             return response.json();
         })
-        .then(callback)
+        .then(callback)// call back JS type
 }
 
 function createForm() {
@@ -58,6 +64,58 @@ function createForm() {
             name: name,
             age: description
         }
-        postCourses(data)
+        postCourses(data, )
     }
+}
+
+
+function HTml(callback) {
+    fetch(urlcourses)
+        .then(response => {
+            return response.json();
+        })
+        .then(callback)
+}
+
+HTml((courses) => {
+    courses.forEach((course) => {
+    })
+});
+
+function getPassword(callback) {
+    fetch(urlpassword)
+        .then(response => {
+            return response.json();
+        })
+        .then(callback)
+}
+
+function checkpassword(elements) {
+    checkElement.addEventListener('click', () => {
+        elements.forEach((passwords) => {
+            var passwordValue = inputpasswordElement.value ;
+            if(passwordValue == passwords.password) {
+                console.log("dung roi")
+            } else {
+                console.log("sai roi")
+            }
+        })
+    })
+}
+
+if(deleteElement) {
+    deleteElement.onclick = 
+            function deleteform() {
+                fetch(urlcourses +'/' + 1, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(callback => {
+                    })
+            }
 }
